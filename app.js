@@ -6,10 +6,10 @@ const fs = require(`fs`);
 const path = require(`path`);
 const JSONstream = require(`JSONstream`);
 var engines = require(`consolidate`);
-//app.engine(`hbs`, engines.handlebars);
-//app.set(`view engine`, `hbs`);
+app.engine(`hbs`, engines.handlebars);
+app.set(`view engine`, `hbs`);
 app.use(bodyParser.json());
-app.set(`view engine`, `ejs`);
+// app.set(`view engine`, `ejs`);
 app.set(`views`, `./views`);
 app.use(`/profilepics`, express.static(`images`));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,9 +44,19 @@ app.get('/:username', function(req, res) {
 app.put('/:username', function(req, res) {
     var username = req.params.username
     var user = getUser(username)
-    saveUser(username, req.body)
-    res.send(req.body)
+    user.location = req.body
+    saveUser(username, user)
+    res.end()
 })
+
+app.delete('/:username', function(req, res) {
+    var username = req.params.username
+    var fp = getUserFilePath(username)
+    fs.unlinkSync(fp)
+    res.end()
+})
+
+
 
 function saveUser(username, data) {
     var fp = getUserFilePath(username)
