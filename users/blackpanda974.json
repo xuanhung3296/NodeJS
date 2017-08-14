@@ -3,12 +3,13 @@
   "name": {
     "title": "miss",
     "first": "miriam",
-    "last": "wallace"
+    "last": "wallace",
+    "full": "Miriam Wallace"
   },
   "location": {
-    "street": "1360 country club rd",
-    "city": "plano",
-    "state": "north dakota",
+    "street": "1360 Country Club Rd",
+    "city": "Plano",
+    "state": "USA",
     "zip": "36965"
   },
   "email": "miriam.wallace36@example.com",
